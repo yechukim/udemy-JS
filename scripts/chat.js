@@ -12,7 +12,7 @@ class Chatroom {
         this.unsub
     }
 
-    async addChat(message) {
+    async addChat(message) { // returns promise 
         //format a chat object
         const now = new Date()
 
@@ -44,6 +44,7 @@ class Chatroom {
 
     updateName(username) {
         this.username = username
+        localStorage.setItem('username', username)
     }
 
     updateRoom(room) {
@@ -53,18 +54,3 @@ class Chatroom {
 
     }
 }
-
-const chatroom = new Chatroom('general', 'yechu')
-
-chatroom.getChats((data) => {
-    console.log(data)
-})
-
-setTimeout(() => {
-    chatroom.updateRoom('gaming')
-    chatroom.updateName('yoshi')
-    chatroom.getChats((data) => {
-        console.log(data)
-    })
-    chatroom.addChat('hello')
-}, 3000)
